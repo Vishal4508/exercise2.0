@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class gmail {
+public class gmail2 {
 	
 	
 	public static void main(String [] args) throws InterruptedException //throws InterruptedException
@@ -52,7 +52,7 @@ public class gmail {
 			Thread.sleep(10000);
 		
 		waitForPage.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Inbox')]")));
-		driver.findElement(By.xpath("//div[@class='UI']/div/div/div[2]/div/table/tbody/tr[1]")).click();
+		driver.findElement(By.xpath("(//span[text()='"+sentMail+"'])[1]")).click();//div[@class='UI']/div/div/div[2]/div/table/tbody/tr[1]
 		String recievedMail = driver.findElement(By.xpath("//div[@data-legacy-message-id]/div/div/div/div/div[1]")).getText();
 		
 		System.out.println("Sent mail :"+sentMail);
@@ -68,36 +68,22 @@ public class gmail {
 		
 		
 		driver.navigate().back();
+		driver.findElement(By.xpath("//span[text()='blue']/../../../../../../tr[1]/td[2]/div/div")).click();
+		System.out.println("checked");
+		waitForPage.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@aria-label='Delete']/div/div")));
+		driver.findElement(By.xpath("//div[@aria-label='Delete']/div/div")).click();
+		System.out.println("deleleted");
+		
+		
+		List<WebElement> checkedMails = driver.findElements(By.)
+		
 
-		    Thread.sleep(3000);
-			List<WebElement> list = driver.findElements(By.xpath("//span[text()='"+sentMail+"']"));
+		   
 			
 			
 			
-		   // waitForPage.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[text()='"+sentMail+"'])[1]")));
-			
-			for(int i=0;i<list.size();i++){
-				list = driver.findElements(By.xpath("//span[text()='"+sentMail+"']"));
-				for(int k=0;k<list.size();k++){
-			System.out.println(list.get(k));
-			}
-			//waitForPage.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='"+sentMail+"']")));
-			list.get(0).click();
-			
-			System.out.println("mail found");
-		//	waitForPage.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-tooltip='Delete']")));
-			
-			 Thread.sleep(5000);
-			
-			driver.findElement(By.cssSelector("div[aria-label='Delete']>div>div")).click();
-			System.out.println("mail deleted!");
-			//driver.navigate().back();
-			driver.findElement(By.xpath("//a[contains(text(),'Inbox')]")).click();
-
-		    Thread.sleep(3000); 			
-			
-			
-			}
+	
+	}
 		
 		
 		
@@ -111,7 +97,7 @@ public class gmail {
 	
 		
 		
-	}
+	
 	
 
 }
